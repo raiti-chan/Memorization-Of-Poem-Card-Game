@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
 <!--suppress XmlUnusedNamespaceDeclaration -->
-<BorderPane prefHeight="500" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<BorderPane prefHeight="500" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="raiti.Application.MemorizationOfPoemCardGame.gui.MainController">
 	<top>
 		<MenuBar BorderPane.alignment="CENTER">
 			<Menu mnemonicParsing="false" text="File">
@@ -21,4 +26,21 @@
 			</Menu>
 		</MenuBar>
 	</top>
+	<center>
+		<TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+			<Tab text="一覧">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<TableView layoutX="14.0" layoutY="81.0" prefHeight="200.0" prefWidth="478.0" fx:id="allListView"
+					           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+						<columns>
+							<TableColumn prefWidth="75.0" text="上の句" fx:id="upperCol"/>
+							<TableColumn prefWidth="75.0" text="下の句" fx:id="lowerCol"/>
+							<TableColumn prefWidth="75.0" text="説明" fx:id="meaningCol"/>
+						</columns>
+					</TableView>
+				</AnchorPane>
+			</Tab>
+		</TabPane>
+	</center>
 </BorderPane>
