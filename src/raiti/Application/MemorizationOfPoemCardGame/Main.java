@@ -42,6 +42,7 @@ public class Main extends Application {
 	
 	private static Main instance = null;
 	
+	@SuppressWarnings("unused")
 	public static Main getInstance() {
 		return instance;
 	}
