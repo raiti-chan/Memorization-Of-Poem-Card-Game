@@ -36,7 +36,7 @@
 						<columns>
 							<TableColumn prefWidth="75.0" text="上の句" fx:id="upperCol"/>
 							<TableColumn prefWidth="75.0" text="下の句" fx:id="lowerCol"/>
-							<TableColumn prefWidth="75.0" text="説明" fx:id="meaningCol"/>
+							<TableColumn prefWidth="75.0" text="意味" fx:id="meaningCol"/>
 						</columns>
 					</TableView>
 				</AnchorPane>

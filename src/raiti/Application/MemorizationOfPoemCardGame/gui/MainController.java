@@ -1,5 +1,8 @@
 package raiti.Application.MemorizationOfPoemCardGame.gui;
 
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,8 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * <br>Created by Raiti-chan on 2016/12/14.
@@ -17,7 +24,7 @@ import java.util.ResourceBundle;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class MainController implements Initializable{
+public class MainController implements Initializable {
 	
 	/**
 	 * 一覧リストのテーブルビュー
@@ -32,7 +39,6 @@ public class MainController implements Initializable{
 	private TableColumn<ListViewData, String> upperCol, lowerCol, meaningCol;
 	
 	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		upperCol.setCellValueFactory(new PropertyValueFactory<>("upper"));
@@ -40,8 +46,21 @@ public class MainController implements Initializable{
 		meaningCol.setCellValueFactory(new PropertyValueFactory<>("meaning"));
 		
 		ObservableList<ListViewData> listViewData = allListView.getItems();
-		listViewData.add(new ListViewData("あああ", "いいい", "ううう"));
-		listViewData.add(new ListViewData("かかか", "ききき", "くくく"));
-		listViewData.add(new ListViewData("さささ", "ししし", "すすす"));
+		
+		List<String> textList = null;
+		try {
+			URL resourcesURL = getClass().getClassLoader().getResource("Data.txt");
+			assert resourcesURL != null : "リソースファイルが見つかりません";
+			textList = Files.readAllLines(Paths.get(resourcesURL.toURI()));
+		} catch (IOException | URISyntaxException | AssertionError e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		textList.forEach(str -> {
+			String[] strings = str.split(",",3);
+			if (strings.length != 3) throw new IllegalArgumentException("文字列が3分割にできません");
+			listViewData.add(new ListViewData(strings[0], strings[1], strings[2]));
+		});
+		
 	}
 }
