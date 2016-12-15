@@ -1,5 +1,9 @@
 package raiti.Application.MemorizationOfPoemCardGame.gui;
 
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -51,7 +55,14 @@ public class MainController implements Initializable {
 		try {
 			URL resourcesURL = getClass().getClassLoader().getResource("Data.txt");
 			assert resourcesURL != null : "リソースファイルが見つかりません";
-			textList = Files.readAllLines(Paths.get(resourcesURL.toURI()));
+			String[] strings = resourcesURL.toURI().toString().split("!");
+			if (strings.length == 2) {
+				FileSystem fileSystem = FileSystems.newFileSystem(URI.create(strings[0]), new HashMap<String, String>());
+				textList = Files.readAllLines(fileSystem.getPath(strings[1]));
+				fileSystem.close();
+			} else {
+				textList = Files.readAllLines(Paths.get(resourcesURL.toURI()));
+			}
 		} catch (IOException | URISyntaxException | AssertionError e) {
 			e.printStackTrace();
 			System.exit(1);
