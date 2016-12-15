@@ -1,7 +1,7 @@
-package raiti.Application.MemorizationOfPoemCardGame.gui;
+package raiti.Application.MemorizationOfPoemCardGame.main.Node;
 
 /**
- * 一覧ビューのデータ構造クラス
+ * 詩データ構造クラス
  * <br>Created by Raiti-chan on 2016/12/14.
  *
  * @author Raiti-chan
@@ -9,9 +9,12 @@ package raiti.Application.MemorizationOfPoemCardGame.gui;
  * @since 1.0.0
  */
 @SuppressWarnings("unused")
-public class ListViewData {
+public class PoemData {
 	
-	
+	/**
+	 * この要素のインデックス
+	 */
+	private int index;
 	
 	/**
 	 * 上の句
@@ -36,12 +39,21 @@ public class ListViewData {
 	 * @param meaning 意味
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public ListViewData(String upper, String lower, String meaning){
+	public PoemData(int index, String upper, String lower, String meaning){
+		this.index = index;
 		this.upper = upper;
 		this.lower = lower;
 		this.meaning = meaning;
 		
 		
+	}
+	
+	/**
+	 * インデックス値を取得します。
+	 * @return インデックス値
+	 */
+	public int getIndex() {
+		return index;
 	}
 	
 	/**
@@ -66,6 +78,14 @@ public class ListViewData {
 	 */
 	public String getMeaning() {
 		return meaning;
+	}
+	
+	/**
+	 * インデックス値を設定します。
+	 * @param index インデックス値
+	 */
+	public void setIndex(int index) {
+		this.index = index;
 	}
 	
 	/**
